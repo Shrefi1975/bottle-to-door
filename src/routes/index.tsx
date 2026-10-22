@@ -17,7 +17,8 @@ export const Route = createFileRoute("/")({
 
 const WHATSAPP = "966500000000";
 
-const BRANDS: Record<string, { label: string; price: number }[]> = {
+type Opt = { label: string; price: number };
+const BRANDS: Record<string, Opt[]> = {
   طويق: [{ label: "330 مل — 40 حبة", price: 10 }, { label: "330 مل شرنك — 24 حبة", price: 7 }],
   أصايل: [{ label: "330 مل — 40 حبة", price: 11 }, { label: "600 مل — 30 حبة", price: 12 }],
   ميراد: [{ label: "330 مل — 40 حبة", price: 10 }],
@@ -37,7 +38,8 @@ function Index() {
   const [brand, setBrand] = useState<string>("طويق");
   const [size, setSize] = useState(0);
   const [qty, setQty] = useState(1);
-  const opt = BRANDS[brand][size] ?? BRANDS[brand][0];
+  const list: Opt[] = BRANDS[brand] ?? [];
+  const opt: Opt = list[size] ?? list[0] ?? { label: "", price: 0 };
   const total = opt.price * qty;
   const msg = useMemo(
     () => `مرحباً، أبغى أطلب:\nالماركة: ${brand}\nالحجم: ${opt.label}\nالكمية: ${qty}\nالقيمة: ${total} ر.س\nأرجو تأكيد التوفر والتوصيل.`,
@@ -116,7 +118,7 @@ function Index() {
             </label>
             <label className="block text-sm font-bold">الحجم والعبوة
               <select value={size} onChange={(e) => setSize(+e.target.value)} className="mt-2 w-full rounded-lg border border-input bg-card p-3 font-normal">
-                {BRANDS[brand].map((o, i) => <option key={o.label} value={i}>{o.label}</option>)}
+                {list.map((o, i) => <option key={o.label} value={i}>{o.label}</option>)}
               </select>
             </label>
             <div className="flex items-center justify-between">
