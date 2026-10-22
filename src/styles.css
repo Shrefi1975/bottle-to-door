@@ -150,5 +150,9 @@
 }
 
 @utility bg-cta-gradient { background-image: var(--gradient-cta); }
+@utility bg-hero-overlay { background-image: linear-gradient(270deg, oklch(0.18 0.06 255 / 0.88) 0%, oklch(0.2 0.06 255 / 0.55) 55%, oklch(0.2 0.06 255 / 0.15) 100%); }
+@utility bg-showcase { background-image: radial-gradient(circle at 50% 40%, var(--card), var(--secondary)); }
+@keyframes progress { from { width: 0; } to { width: 100%; } }
+@utility animate-progress { animation: progress 3s linear forwards; }
 @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 @utility animate-float { animation: float 4s ease-in-out infinite; }

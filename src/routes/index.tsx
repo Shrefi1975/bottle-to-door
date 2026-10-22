@@ -75,38 +75,35 @@ function Index() {
 
   return (
     <main className="min-h-screen bg-background font-sans text-foreground">
-      <section className="grid md:grid-cols-2">
-        <div className="flex flex-col justify-center px-6 py-10 md:px-16">
-          <div className="mb-12 flex items-center gap-3">
-            <Droplets className="h-7 w-7 text-primary" />
-            <span className="text-2xl font-bold text-primary">مياه البيت</span>
-            <span className="border-r border-border pr-3 text-xs text-muted-foreground">مياه • توصيل • جدة</span>
+<section className="relative isolate overflow-hidden">
+        <img src={hero} alt="كراتين مياه عند باب منزل" width={1280} height={960} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <div className="absolute inset-0 -z-10 bg-hero-overlay" />
+        <div className="mx-auto flex min-h-[78vh] max-w-6xl flex-col justify-between px-6 py-6 text-primary-foreground md:px-12 md:py-8">
+          <div className="flex items-center gap-3">
+            <Droplets className="h-7 w-7" />
+            <span className="text-2xl font-bold">مياه البيت</span>
+            <span className="border-r border-primary-foreground/30 pr-3 text-xs opacity-80">مياه • توصيل • جدة</span>
           </div>
-          <p className="mb-6 flex items-center gap-2 text-sm font-medium text-primary">
-            <span className="h-2 w-2 rounded-full bg-primary" /> راحتك تبدأ من هنا
-          </p>
-          <h1 className="text-5xl font-bold leading-tight md:text-6xl">
-            لا تشيل هم المياه.
-            <br />
-            <span className="text-primary">نوصلها لبابك.</span>
-          </h1>
-          <p className="mt-6 text-lg leading-8 text-muted-foreground">
-            اختر طلبك وخلّ الباقي علينا.
-          </p>
-          <a href="#order" className="mt-8 flex max-w-xs items-center justify-between rounded-lg bg-cta-gradient px-6 py-4 font-bold text-cta-foreground shadow-lg">
-            <span className="flex items-center gap-2"><MessageCircle className="h-5 w-5" /> اطلب الحين</span>
-            <ArrowLeft className="h-5 w-5" />
-          </a>
-          <div className="mt-4 flex gap-6 text-xs text-muted-foreground">
-            <span className="flex items-center gap-1"><Wallet className="h-4 w-4 text-primary" /> الدفع عند الاستلام</span>
-            <span className="flex items-center gap-1"><Check className="h-4 w-4 text-primary" /> بدون حساب</span>
+          <div className="max-w-xl py-10">
+            <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary-foreground/25 bg-primary-foreground/10 px-3 py-1 text-xs font-medium backdrop-blur-md">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-cta" /> راحتك تبدأ من هنا
+            </p>
+            <h1 className="text-4xl font-bold leading-tight drop-shadow-lg md:text-6xl">
+              لا تشيل هم المياه.
+              <br />
+              <span className="bg-gradient-to-l from-primary-foreground to-primary-foreground/70 bg-clip-text text-transparent">نوصلها لبابك.</span>
+            </h1>
+            <p className="mt-4 text-base opacity-90 md:text-lg">اختر طلبك وخلّ الباقي علينا.</p>
+            <a href="#order" className="mt-6 inline-flex items-center gap-3 rounded-full bg-cta-gradient px-7 py-3.5 font-bold text-cta-foreground shadow-xl transition hover:scale-105">
+              <MessageCircle className="h-5 w-5" /> اطلب الحين <ArrowLeft className="h-5 w-5" />
+            </a>
           </div>
-        </div>
-        <div className="relative min-h-80">
-          <img src={hero} alt="كراتين مياه عند باب منزل" width={1280} height={960} className="absolute inset-0 h-full w-full object-cover" />
-          <div className="absolute bottom-6 right-6 flex items-center gap-3 rounded-lg bg-card p-3 shadow-lg">
-            <span className="rounded-full bg-secondary p-2"><Truck className="h-5 w-5 text-primary" /></span>
-            <div><p className="text-sm font-bold">توصيل لين الباب</p><p className="text-xs text-muted-foreground">بيوت ومكاتب جدة</p></div>
+          <div className="flex flex-wrap items-center gap-3 text-xs">
+            {[[Wallet, "الدفع عند الاستلام"], [Check, "بدون حساب"], [Truck, "توصيل لين الباب"]].map(([Icon, t]: any) => (
+              <span key={t} className="flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-3 py-1.5 backdrop-blur-md">
+                <Icon className="h-4 w-4" /> {t}
+              </span>
+            ))}
           </div>
         </div>
       </section>
@@ -132,18 +129,29 @@ function Index() {
           <span className="flex items-center gap-2 rounded-md bg-secondary px-3 py-2 text-sm text-primary"><Package className="h-4 w-4" /> الأسعار تبدأ من ٥ ر.س</span>
         </div>
         <div className="grid gap-8 md:grid-cols-2">
-          <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-lg" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(SHOW.includes(brand))}>
-            <div className="relative h-80 bg-secondary">
-              {SHOW.map((b, i) => (
-                <img key={b} src={IMAGES[b]} alt={`مياه ${b}`} loading="lazy"
-                  className={`absolute inset-0 h-full w-full object-contain p-6 transition-all duration-700 ease-out ${i === slide ? "scale-100 opacity-100 animate-float" : "scale-90 opacity-0"}`} />
-              ))}
-              <span className="absolute right-4 top-4 rounded-full bg-card px-3 py-1 text-sm font-bold text-primary shadow">{shown}</span>
+<div className="overflow-hidden rounded-3xl border border-border bg-card shadow-2xl" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+            <div className="relative h-80 overflow-hidden bg-showcase [perspective:1200px]">
+              <div className="absolute left-1/2 top-1/2 h-56 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/15 blur-3xl" />
+              {SHOW.map((b, i) => {
+                const pos = (i - slide + SHOW.length) % SHOW.length;
+                const cls = pos === 0 ? "opacity-100 blur-0 [transform:translateX(0)_scale(1)_rotateY(0deg)]"
+                  : pos === 1 ? "opacity-0 blur-md [transform:translateX(-40%)_scale(0.8)_rotateY(25deg)]"
+                  : "opacity-0 blur-md [transform:translateX(40%)_scale(0.8)_rotateY(-25deg)]";
+                return <img key={b} src={IMAGES[b]} alt={`مياه ${b}`} loading="lazy"
+                  className={`absolute inset-0 h-full w-full object-contain p-8 drop-shadow-2xl transition-all duration-1000 ease-[cubic-bezier(.22,1,.36,1)] ${cls}`} />;
+              })}
+              <span key={shown} className="absolute right-4 top-4 rounded-full bg-card/80 px-4 py-1.5 text-sm font-bold text-primary shadow backdrop-blur animate-in fade-in slide-in-from-top-2 duration-500">{shown}</span>
+              <span className="absolute left-4 top-4 rounded-full bg-card/80 px-3 py-1 text-xs text-muted-foreground backdrop-blur">{ar(slide + 1)} / {ar(SHOW.length)}</span>
+              <div className="absolute inset-x-0 bottom-0 h-1 bg-border/50">
+                <div key={`${slide}-${paused}`} className={`h-full bg-primary ${paused ? "w-full" : "animate-progress"}`} />
+              </div>
             </div>
-            <div className="flex justify-center gap-2 p-4">
+            <div className="flex gap-2 overflow-x-auto p-3">
               {SHOW.map((b, i) => (
                 <button key={b} aria-label={b} onClick={() => pick(b)}
-                  className={`h-2 rounded-full transition-all duration-500 ${i === slide ? "w-8 bg-primary" : "w-2 bg-border"}`} />
+                  className={`h-14 w-14 shrink-0 rounded-xl border-2 bg-secondary p-1 transition-all duration-300 ${i === slide ? "scale-105 border-primary" : "border-transparent opacity-50 hover:opacity-100"}`}>
+                  <img src={IMAGES[b]} alt="" className="h-full w-full object-contain" />
+                </button>
               ))}
             </div>
           </div>
