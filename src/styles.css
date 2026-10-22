@@ -33,6 +33,9 @@
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
+  --color-cta: var(--cta);
+  --color-cta-foreground: var(--cta-foreground);
+  --font-sans: 'IBM Plex Sans Arabic', system-ui, sans-serif;
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
@@ -63,14 +66,17 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --background: oklch(0.985 0.006 240);
+  --foreground: oklch(0.2 0.03 250);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.48 0.17 255);
+  --primary-foreground: oklch(0.99 0 0);
+  --cta: oklch(0.45 0.12 155);
+  --cta-foreground: oklch(0.99 0 0);
+  --gradient-cta: linear-gradient(90deg, oklch(0.5 0.13 150), oklch(0.38 0.1 160));
   --secondary: oklch(0.968 0.007 247.896);
   --secondary-foreground: oklch(0.208 0.042 265.755);
   --muted: oklch(0.968 0.007 247.896);
@@ -142,3 +148,5 @@
     color: var(--color-foreground);
   }
 }
+
+@utility bg-cta-gradient { background-image: var(--gradient-cta); }
