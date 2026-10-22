@@ -1,7 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Droplets, Truck, Wallet, MessageCircle, ArrowLeft, Check, Minus, Plus, Package } from "lucide-react";
-import hero from "@/assets/hero.jpg";
+import heroA from "@/assets/hero2.jpg.asset.json";
+import b1 from "@/assets/brand1.jpg.asset.json";
+import b2 from "@/assets/brand2.jpg.asset.json";
+import b3 from "@/assets/brand3.png.asset.json";
+import b4 from "@/assets/brand4.jpg.asset.json";
+import b5 from "@/assets/brand5.webp.asset.json";
+import b6 from "@/assets/brand6.webp.asset.json";
+import b7 from "@/assets/brand7.webp.asset.json";
+import b8 from "@/assets/brand8.jpg.asset.json";
+const hero = heroA.url;
+const IMAGES: Record<string, string> = {
+  أصايل: b1.url, أكويا: b2.url, البيان: b3.url, العين: b4.url,
+  ارفا: b5.url, صفا: b6.url, ميراد: b7.url, نوفا: b8.url,
+};
+const SHOW = Object.keys(IMAGES);
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -38,6 +52,19 @@ function Index() {
   const [brand, setBrand] = useState<string>("طويق");
   const [size, setSize] = useState(0);
   const [qty, setQty] = useState(1);
+  const [slide, setSlide] = useState(0);
+  const [paused, setPaused] = useState(false);
+  useEffect(() => {
+    if (paused) return;
+    const t = setInterval(() => setSlide((i) => (i + 1) % SHOW.length), 3000);
+    return () => clearInterval(t);
+  }, [paused]);
+  const pick = (b: string) => {
+    setBrand(b); setSize(0);
+    const i = SHOW.indexOf(b);
+    if (i >= 0) { setSlide(i); setPaused(true); } else setPaused(false);
+  };
+  const shown = SHOW[slide] ?? SHOW[0] ?? "";
   const list: Opt[] = BRANDS[brand] ?? [];
   const opt: Opt = list[size] ?? list[0] ?? { label: "", price: 0 };
   const total = opt.price * qty;
@@ -56,15 +83,15 @@ function Index() {
             <span className="border-r border-border pr-3 text-xs text-muted-foreground">مياه • توصيل • جدة</span>
           </div>
           <p className="mb-6 flex items-center gap-2 text-sm font-medium text-primary">
-            <span className="h-2 w-2 rounded-full bg-primary" /> عطشان؟ إحنا جاهزين
+            <span className="h-2 w-2 rounded-full bg-primary" /> راحتك تبدأ من هنا
           </p>
           <h1 className="text-5xl font-bold leading-tight md:text-6xl">
-            المياه علينا.
+            لا تشيل هم المياه.
             <br />
-            <span className="text-primary">والراحة عليك.</span>
+            <span className="text-primary">نوصلها لبابك.</span>
           </h1>
           <p className="mt-6 text-lg leading-8 text-muted-foreground">
-            اختر ماركتك وحجمك، ونجيبها لين عندك.
+            اختر طلبك وخلّ الباقي علينا.
           </p>
           <a href="#order" className="mt-8 flex max-w-xs items-center justify-between rounded-lg bg-cta-gradient px-6 py-4 font-bold text-cta-foreground shadow-lg">
             <span className="flex items-center gap-2"><MessageCircle className="h-5 w-5" /> اطلب الحين</span>
@@ -105,14 +132,24 @@ function Index() {
           <span className="flex items-center gap-2 rounded-md bg-secondary px-3 py-2 text-sm text-primary"><Package className="h-4 w-4" /> الأسعار تبدأ من ٥ ر.س</span>
         </div>
         <div className="grid gap-8 md:grid-cols-2">
-          <div className="flex min-h-72 flex-col items-center justify-center rounded-xl border border-border bg-card p-6">
-            <Droplets className="h-24 w-24 text-primary" />
-            <p className="mt-4 text-2xl font-bold text-primary">{brand}</p>
-            <p className="mt-2 text-xs text-muted-foreground">قد يختلف شكل العبوة حسب الحجم</p>
+          <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-lg" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(SHOW.includes(brand))}>
+            <div className="relative h-80 bg-secondary">
+              {SHOW.map((b, i) => (
+                <img key={b} src={IMAGES[b]} alt={`مياه ${b}`} loading="lazy"
+                  className={`absolute inset-0 h-full w-full object-contain p-6 transition-all duration-700 ease-out ${i === slide ? "scale-100 opacity-100 animate-float" : "scale-90 opacity-0"}`} />
+              ))}
+              <span className="absolute right-4 top-4 rounded-full bg-card px-3 py-1 text-sm font-bold text-primary shadow">{shown}</span>
+            </div>
+            <div className="flex justify-center gap-2 p-4">
+              {SHOW.map((b, i) => (
+                <button key={b} aria-label={b} onClick={() => pick(b)}
+                  className={`h-2 rounded-full transition-all duration-500 ${i === slide ? "w-8 bg-primary" : "w-2 bg-border"}`} />
+              ))}
+            </div>
           </div>
           <div className="space-y-5">
             <label className="block text-sm font-bold">اختر الماركة
-              <select value={brand} onChange={(e) => { setBrand(e.target.value); setSize(0); }} className="mt-2 w-full rounded-lg border border-input bg-card p-3 font-normal">
+              <select value={brand} onChange={(e) => pick(e.target.value)} className="mt-2 w-full rounded-lg border border-input bg-card p-3 font-normal">
                 {brands.map((b) => <option key={b}>{b}</option>)}
               </select>
             </label>
