@@ -34,7 +34,7 @@ const wa = (t: string) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t
 
 function Index() {
   const brands = Object.keys(BRANDS);
-  const [brand, setBrand] = useState(brands[0]);
+  const [brand, setBrand] = useState<string>("طويق");
   const [size, setSize] = useState(0);
   const [qty, setQty] = useState(1);
   const opt = BRANDS[brand][size] ?? BRANDS[brand][0];
