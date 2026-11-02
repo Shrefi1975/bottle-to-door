@@ -142,7 +142,7 @@ function Index() {
                   : pos === 1 ? "opacity-0 blur-md [transform:translateX(-40%)_scale(0.8)_rotateY(25deg)]"
                   : "opacity-0 blur-md [transform:translateX(40%)_scale(0.8)_rotateY(-25deg)]";
                 return <img key={b} src={IMAGES[b]} alt={`مياه ${b}`} loading="lazy"
-                  className={`absolute inset-0 h-full w-full object-contain p-8 drop-shadow-2xl transition-all duration-1000 ease-[cubic-bezier(.22,1,.36,1)] ${cls}`} />;
+                  className={`absolute inset-0 m-auto max-h-[82%] max-w-[82%] object-contain drop-shadow-2xl transition-all duration-1000 ease-[cubic-bezier(.22,1,.36,1)] ${cls}`} />;
               })}
               <span key={shown} className="absolute right-4 top-4 rounded-full bg-card/80 px-4 py-1.5 text-sm font-bold text-primary shadow backdrop-blur animate-in fade-in slide-in-from-top-2 duration-500">{shown}</span>
               <span className="absolute left-4 top-4 rounded-full bg-card/80 px-3 py-1 text-xs text-muted-foreground backdrop-blur">{ar(slide + 1)} / {ar(SHOW.length)}</span>
@@ -186,13 +186,29 @@ function Index() {
         </div>
       </section>
 
-      <section className="bg-primary px-6 py-14 text-center text-primary-foreground">
-        <h2 className="text-3xl font-bold">مويتك لبيتك، بدون تعب.</h2>
-        <p className="mt-3 opacity-90">محتار؟ كلمنا ونساعدك تختار.</p>
-        <a href={wa("مرحباً، أبغى أطلب مياه.")} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-lg bg-cta-gradient px-8 py-4 font-bold text-cta-foreground">
-          <MessageCircle className="h-5 w-5" /> كلمنا على واتساب
-        </a>
-      </section>
+      <footer className="bg-primary text-primary-foreground">
+        <div className="mx-auto max-w-6xl px-6 py-14 text-center">
+          <p className="text-sm font-medium opacity-80">كل اللي يعجبك… موجود</p>
+          <h2 className="mt-2 text-3xl font-bold md:text-4xl">ماركاتك المفضلة، توصلك لباب البيت</h2>
+          <p className="mt-3 opacity-90">محتار؟ كلمنا ونساعدك تختار.</p>
+          <div className="mx-auto mt-10 grid max-w-4xl grid-cols-5 gap-3 md:gap-4">
+            {SHOW.map((b) => (
+              <div key={b} className="group flex flex-col items-center gap-2">
+                <span className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl bg-card p-1.5 shadow-lg transition-transform duration-300 group-hover:-translate-y-1 group-hover:scale-105 md:h-20 md:w-20">
+                  <img src={IMAGES[b]} alt={`مياه ${b}`} loading="lazy" className="max-h-full max-w-full object-contain" />
+                </span>
+                <span className="text-[11px] font-medium opacity-80 md:text-xs">{b}</span>
+              </div>
+            ))}
+          </div>
+          <a href={wa("مرحباً، أبغى أطلب مياه.")} target="_blank" rel="noreferrer" className="mt-10 inline-flex items-center gap-2 rounded-lg bg-cta-gradient px-8 py-4 font-bold text-cta-foreground shadow-xl transition hover:scale-105">
+            <MessageCircle className="h-5 w-5" /> كلمنا على واتساب
+          </a>
+        </div>
+        <div className="border-t border-primary-foreground/15 px-6 py-5 text-center text-xs opacity-70">
+          مياه البيت — توصيل مياه في جدة • الدفع عند الاستلام
+        </div>
+      </footer>
     </main>
   );
 }
