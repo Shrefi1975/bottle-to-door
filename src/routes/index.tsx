@@ -2,18 +2,21 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { Droplets, Truck, Wallet, MessageCircle, ArrowLeft, Check, Minus, Plus, Package } from "lucide-react";
 import heroA from "@/assets/hero2.jpg.asset.json";
-import b1 from "@/assets/brand1.jpg.asset.json";
-import b2 from "@/assets/brand2.jpg.asset.json";
-import b3 from "@/assets/brand3.png.asset.json";
-import b4 from "@/assets/brand4.jpg.asset.json";
-import b5 from "@/assets/brand5.webp.asset.json";
-import b6 from "@/assets/brand6.webp.asset.json";
-import b7 from "@/assets/brand7.webp.asset.json";
-import b8 from "@/assets/brand8.jpg.asset.json";
+import bayanImg from "@/assets/bayan.webp.asset.json";
+import berainImg from "@/assets/berain.webp.asset.json";
+import safaImg from "@/assets/safa.webp.asset.json";
+import aloyounImg from "@/assets/aloyoun.webp.asset.json";
+import novaImg from "@/assets/nova.webp.asset.json";
+import mawaredImg from "@/assets/mawared.webp.asset.json";
+import akoyaImg from "@/assets/akoya.webp.asset.json";
+import naqaImg from "@/assets/naqa.webp.asset.json";
+import zulalImg from "@/assets/zulal.png.asset.json";
+import eveImg from "@/assets/eve.png.asset.json";
 const hero = heroA.url;
 const IMAGES: Record<string, string> = {
-  أصايل: b1.url, أكويا: b2.url, البيان: b3.url, العين: b4.url,
-  ارفا: b5.url, صفا: b6.url, ميراد: b7.url, نوفا: b8.url,
+  البيان: bayanImg.url, بيرين: berainImg.url, صفا: safaImg.url, العيون: aloyounImg.url,
+  نوفا: novaImg.url, موارد: mawaredImg.url, أكويا: akoyaImg.url, "نقا آسيا": naqaImg.url,
+  زلال: zulalImg.url, إيفا: eveImg.url,
 };
 const SHOW = Object.keys(IMAGES);
 
@@ -33,15 +36,16 @@ const WHATSAPP = "966500000000";
 
 type Opt = { label: string; price: number };
 const BRANDS: Record<string, Opt[]> = {
-  طويق: [{ label: "330 مل — 40 حبة", price: 10 }, { label: "330 مل شرنك — 24 حبة", price: 7 }],
-  أصايل: [{ label: "330 مل — 40 حبة", price: 11 }, { label: "600 مل — 30 حبة", price: 12 }],
-  ميراد: [{ label: "330 مل — 40 حبة", price: 10 }],
+  البيان: [{ label: "330 مل — 24 حبة", price: 10 }],
+  بيرين: [{ label: "330 مل — 40 حبة", price: 12 }],
   صفا: [{ label: "330 مل — 40 حبة", price: 9 }, { label: "جالون 5 لتر", price: 5 }],
+  العيون: [{ label: "330 مل — 40 حبة", price: 10 }],
   نوفا: [{ label: "330 مل — 40 حبة", price: 14 }, { label: "200 مل — 48 حبة", price: 13 }],
+  موارد: [{ label: "330 مل — 40 حبة", price: 11 }],
   أكويا: [{ label: "330 مل — 40 حبة", price: 12 }],
-  ارفا: [{ label: "330 مل — 40 حبة", price: 11 }],
-  العين: [{ label: "330 مل — 40 حبة", price: 13 }],
-  البيان: [{ label: "330 مل — 40 حبة", price: 10 }],
+  "نقا آسيا": [{ label: "330 مل — 40 حبة", price: 10 }],
+  زلال: [{ label: "330 مل — 40 حبة", price: 10 }],
+  إيفا: [{ label: "330 مل — 40 حبة", price: 11 }],
 };
 
 const ar = (n: number) => n.toLocaleString("ar-SA");
@@ -49,7 +53,7 @@ const wa = (t: string) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t
 
 function Index() {
   const brands = Object.keys(BRANDS);
-  const [brand, setBrand] = useState<string>("طويق");
+  const [brand, setBrand] = useState<string>("البيان");
   const [size, setSize] = useState(0);
   const [qty, setQty] = useState(1);
   const [slide, setSlide] = useState(0);
