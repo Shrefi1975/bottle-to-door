@@ -1,22 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { Droplets, Truck, Wallet, MessageCircle, ArrowLeft, Check, Minus, Plus, Package } from "lucide-react";
-import heroA from "@/assets/hero2.jpg.asset.json";
-import bayanImg from "@/assets/bayan.webp.asset.json";
-import berainImg from "@/assets/berain.webp.asset.json";
-import safaImg from "@/assets/safa.webp.asset.json";
-import aloyounImg from "@/assets/aloyoun.webp.asset.json";
-import novaImg from "@/assets/nova.webp.asset.json";
-import mawaredImg from "@/assets/mawared.webp.asset.json";
-import akoyaImg from "@/assets/akoya.webp.asset.json";
-import naqaImg from "@/assets/naqa.webp.asset.json";
-import zulalImg from "@/assets/zulal.png.asset.json";
-import eveImg from "@/assets/eve.png.asset.json";
-const hero = heroA.url;
+import hero from "@/assets/hero2.jpg";
+import bayanImg from "@/assets/bayan.webp";
+import berainImg from "@/assets/berain.webp";
+import safaImg from "@/assets/safa.webp";
+import aloyounImg from "@/assets/aloyoun.webp";
+import novaImg from "@/assets/nova.webp";
+import mawaredImg from "@/assets/mawared.webp";
+import akoyaImg from "@/assets/akoya.webp";
+import naqaImg from "@/assets/naqa.webp";
+import zulalImg from "@/assets/zulal.png";
+import eveImg from "@/assets/eve.png";
 const IMAGES: Record<string, string> = {
-  البيان: bayanImg.url, بيرين: berainImg.url, صفا: safaImg.url, العيون: aloyounImg.url,
-  نوفا: novaImg.url, موارد: mawaredImg.url, أكويا: akoyaImg.url, "نقا آسيا": naqaImg.url,
-  زلال: zulalImg.url, إيفا: eveImg.url,
+  البيان: bayanImg, بيرين: berainImg, صفا: safaImg, العيون: aloyounImg,
+  نوفا: novaImg, موارد: mawaredImg, أكويا: akoyaImg, "نقا آسيا": naqaImg,
+  زلال: zulalImg, إيفا: eveImg,
 };
 const SHOW = Object.keys(IMAGES);
 
