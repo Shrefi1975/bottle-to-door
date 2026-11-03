@@ -26,6 +26,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "اطلب مياهك المفضلة وتوصلك لباب بيتك في جدة، والدفع عند الاستلام." },
       { property: "og:title", content: "مياه البيت | توصيل مياه في جدة" },
       { property: "og:description", content: "اطلب مياهك المفضلة وتوصلك لباب بيتك في جدة." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Index,

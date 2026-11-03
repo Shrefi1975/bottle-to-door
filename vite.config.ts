@@ -7,13 +7,19 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
+  // Avoid Netlify auto-detecting a functions deployment: the page is static.
+  // Lovable retains its own enforced Worker output when building here.
+  nitro: {
+    preset: "node-server",
+    output: { dir: "dist", publicDir: "dist/client", serverDir: "dist/server" },
+  },
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
     // Prerender "/" to static HTML at build time so the site deploys to static
-    // hosts (e.g. Netlify) from dist/client. Only "/" is static; discovery is
-    // off so no other route is prerendered.
+    // hosts. The build-time Netlify export promotes dist/client to dist.
+    // Only "/" is static; discovery is off so no other route is prerendered.
     pages: [{ path: "/" }],
     prerender: { enabled: true, autoStaticPathsDiscovery: false },
   },
