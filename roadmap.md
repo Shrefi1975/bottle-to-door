@@ -1,4 +1,5 @@
 # Netlify deployment
-- [ ] Configure automatic Netlify build with Bun and publish directory `dist`.
-- [ ] Place static HTML and its assets at the publish root while preserving Lovable output.
-- [ ] Verify static navigation, images, and order controls.
+- [x] Configure automatic Netlify build with Bun and publish directory `dist`.
+- [x] Add and test static export to the publish root while preserving Lovable output.
+- [x] Verify route matching, export preservation, images, and order controls locally (three tests passed; browser returned 200 with no page errors).
+- [ ] Verify the deployed Netlify site; blocked until a new Netlify deployment is available.
