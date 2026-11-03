@@ -2,16 +2,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { Droplets, Truck, Wallet, MessageCircle, ArrowLeft, Check, Minus, Plus, Package } from "lucide-react";
 import hero from "@/assets/hero2.jpg";
-import bayanImg from "@/assets/bayan.webp";
-import berainImg from "@/assets/berain.webp";
-import safaImg from "@/assets/safa.webp";
-import aloyounImg from "@/assets/aloyoun.webp";
-import novaImg from "@/assets/nova.webp";
-import mawaredImg from "@/assets/mawared.webp";
-import akoyaImg from "@/assets/akoya.webp";
-import naqaImg from "@/assets/naqa.webp";
-import zulalImg from "@/assets/zulal.png";
-import eveImg from "@/assets/eve.png";
+import bayanImg from "@/assets/bayan-box.webp";
+import berainImg from "@/assets/berain-box.webp";
+import safaImg from "@/assets/safa-box.webp";
+import aloyounImg from "@/assets/aloyoun-box.webp";
+import novaImg from "@/assets/nova-box.webp";
+import mawaredImg from "@/assets/mawared-box.webp";
+import akoyaImg from "@/assets/akoya-box.webp";
+import naqaImg from "@/assets/naqa-box.webp";
+import zulalImg from "@/assets/zulal-box.webp";
+import eveImg from "@/assets/eve-box.webp";
 const IMAGES: Record<string, string> = {
   البيان: bayanImg, بيرين: berainImg, صفا: safaImg, العيون: aloyounImg,
   نوفا: novaImg, موارد: mawaredImg, أكويا: akoyaImg, "نقا آسيا": naqaImg,
