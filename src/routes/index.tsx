@@ -134,30 +134,28 @@ function Index() {
           <span className="flex items-center gap-2 rounded-md bg-secondary px-3 py-2 text-sm text-primary"><Package className="h-4 w-4" /> الأسعار تبدأ من ٥ ر.س</span>
         </div>
         <div className="grid gap-8 md:grid-cols-2">
-<div className="overflow-hidden rounded-3xl border border-border bg-card shadow-2xl" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
-            <div className="relative h-80 overflow-hidden bg-showcase [perspective:1200px]">
-              <div className="absolute left-1/2 top-1/2 h-56 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/15 blur-3xl" />
+          <div className="self-start overflow-hidden rounded-3xl border border-border bg-card p-2 shadow-2xl ring-1 ring-primary/10" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+            <div className="relative aspect-[3/2] overflow-hidden rounded-2xl bg-secondary">
               {SHOW.map((b, i) => {
                 const pos = (i - slide + SHOW.length) % SHOW.length;
-                const cls = pos === 0 ? "opacity-100 blur-0 [transform:translateX(0)_scale(1)_rotateY(0deg)]"
-                  : pos === 1 ? "opacity-0 blur-md [transform:translateX(-40%)_scale(0.8)_rotateY(25deg)]"
-                  : "opacity-0 blur-md [transform:translateX(40%)_scale(0.8)_rotateY(-25deg)]";
-                return <img key={b} src={IMAGES[b]} alt={`مياه ${b}`} loading="lazy"
-                  className={`absolute inset-0 m-auto max-h-[82%] max-w-[82%] object-contain drop-shadow-2xl transition-all duration-1000 ease-[cubic-bezier(.22,1,.36,1)] ${cls}`} />;
+                const cls = pos === 0 ? "opacity-100 scale-100" : pos === 1 ? "opacity-0 scale-105 translate-x-[-6%]" : "opacity-0 scale-105 translate-x-[6%]";
+                return <img key={b} src={IMAGES[b]} alt={`مياه ${b}`} loading={i === 0 ? "eager" : "lazy"} width={1200} height={800}
+                  className={`absolute inset-0 h-full w-full object-cover transition-all duration-1000 ease-[cubic-bezier(.22,1,.36,1)] ${cls}`} />;
               })}
-              <span key={shown} className="absolute right-4 top-4 rounded-full bg-card/80 px-4 py-1.5 text-sm font-bold text-primary shadow backdrop-blur animate-in fade-in slide-in-from-top-2 duration-500">{shown}</span>
-              <span className="absolute left-4 top-4 rounded-full bg-card/80 px-3 py-1 text-xs text-muted-foreground backdrop-blur">{ar(slide + 1)} / {ar(SHOW.length)}</span>
-              <div className="absolute inset-x-0 bottom-0 h-1 bg-border/50">
+              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-foreground/60 to-transparent" />
+              <div className="absolute inset-x-4 bottom-4 flex items-end justify-between">
+                <span key={shown} className="rounded-full bg-card px-4 py-1.5 text-sm font-bold text-primary shadow-lg animate-in fade-in slide-in-from-bottom-2 duration-500">مياه {shown}</span>
+                <div className="flex gap-1.5">
+                  {SHOW.map((b, i) => (
+                    <button key={b} aria-label={b} onClick={() => pick(b)}
+                      className={`h-2 rounded-full transition-all duration-300 ${i === slide ? "w-6 bg-card" : "w-2 bg-card/50 hover:bg-card/80"}`} />
+                  ))}
+                </div>
+              </div>
+              <span className="absolute left-4 top-4 rounded-full bg-card/85 px-3 py-1 text-xs text-muted-foreground backdrop-blur">{ar(slide + 1)} / {ar(SHOW.length)}</span>
+              <div className="absolute inset-x-0 top-0 h-1 bg-border/40">
                 <div key={`${slide}-${paused}`} className={`h-full bg-primary ${paused ? "w-full" : "animate-progress"}`} />
               </div>
-            </div>
-            <div className="flex gap-2 overflow-x-auto p-3">
-              {SHOW.map((b, i) => (
-                <button key={b} aria-label={b} onClick={() => pick(b)}
-                  className={`h-14 w-14 shrink-0 rounded-xl border-2 bg-secondary p-1 transition-all duration-300 ${i === slide ? "scale-105 border-primary" : "border-transparent opacity-50 hover:opacity-100"}`}>
-                  <img src={IMAGES[b]} alt="" className="h-full w-full object-contain" />
-                </button>
-              ))}
             </div>
           </div>
           <div className="space-y-5">
