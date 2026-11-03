@@ -142,7 +142,7 @@ function Index() {
                 return <img key={b} src={IMAGES[b]} alt={`مياه ${b}`} loading={i === 0 ? "eager" : "lazy"} width={1200} height={800}
                   className={`absolute inset-0 h-full w-full object-cover transition-all duration-1000 ease-[cubic-bezier(.22,1,.36,1)] ${cls}`} />;
               })}
-              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-foreground/60 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-foreground/20 to-transparent" />
               <div className="absolute inset-x-4 bottom-4 flex items-end justify-between">
                 <span key={shown} className="rounded-full bg-card px-4 py-1.5 text-sm font-bold text-primary shadow-lg animate-in fade-in slide-in-from-bottom-2 duration-500">مياه {shown}</span>
                 <div className="flex gap-1.5">
