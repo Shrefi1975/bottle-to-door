@@ -12,6 +12,7 @@ import akoyaImg from "@/assets/akoya-box.webp";
 import naqaImg from "@/assets/naqa-box.webp";
 import zulalImg from "@/assets/zulal-box.webp";
 import eveImg from "@/assets/eve-box.webp";
+import { BRANDS, type Opt } from "@/lib/products";
 const IMAGES: Record<string, string> = {
   البيان: bayanImg, بيرين: berainImg, صفا: safaImg, العيون: aloyounImg,
   نوفا: novaImg, موارد: mawaredImg, أكويا: akoyaImg, "نقا آسيا": naqaImg,
@@ -34,20 +35,6 @@ export const Route = createFileRoute("/")({
 });
 
 const WHATSAPP = "966500000000";
-
-type Opt = { label: string; price: number };
-const BRANDS: Record<string, Opt[]> = {
-  البيان: [{ label: "330 مل — 24 حبة", price: 10 }],
-  بيرين: [{ label: "330 مل — 40 حبة", price: 12 }],
-  صفا: [{ label: "330 مل — 40 حبة", price: 9 }, { label: "جالون 5 لتر", price: 5 }],
-  العيون: [{ label: "330 مل — 40 حبة", price: 10 }],
-  نوفا: [{ label: "330 مل — 40 حبة", price: 14 }, { label: "200 مل — 48 حبة", price: 13 }],
-  موارد: [{ label: "330 مل — 40 حبة", price: 11 }],
-  أكويا: [{ label: "330 مل — 40 حبة", price: 12 }],
-  "نقا آسيا": [{ label: "330 مل — 40 حبة", price: 10 }],
-  زلال: [{ label: "330 مل — 40 حبة", price: 10 }],
-  إيفا: [{ label: "330 مل — 40 حبة", price: 11 }],
-};
 
 const ar = (n: number) => n.toLocaleString("ar-SA");
 const wa = (t: string) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t)}`;
@@ -110,21 +97,6 @@ function Index() {
               </span>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="border-y border-border bg-card">
-        <div className="mx-auto grid max-w-6xl gap-6 px-6 py-8 md:grid-cols-3">
-          {[
-            [Truck, "نوصل لك", "لا مشاوير ولا شيل"],
-            [Droplets, "ماركات متنوعة", "اللي يناسب بيتك ومكتبك"],
-            [Wallet, "الدفع لما يوصل", "بدون أي دفع مقدم"],
-          ].map(([Icon, t, d]: any) => (
-            <div key={t} className="flex items-center gap-4">
-              <span className="rounded-full bg-secondary p-3"><Icon className="h-6 w-6 text-primary" /></span>
-              <div><h2 className="font-bold">{t}</h2><p className="text-sm text-muted-foreground">{d}</p></div>
-            </div>
-          ))}
         </div>
       </section>
 
