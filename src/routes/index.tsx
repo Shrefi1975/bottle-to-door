@@ -68,7 +68,7 @@ function Index() {
   return (
     <main className="min-h-screen bg-background font-sans text-foreground">
 <section className="relative isolate overflow-hidden">
-        <img src={hero} alt="كراتين مياه عند باب منزل" width={1280} height={960} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <img src={hero} alt="كراتين مياه عند باب منزل" width={1280} height={960} className="absolute inset-0 -z-10 h-full w-full animate-hero-motion object-cover" />
         <div className="absolute inset-0 -z-10 bg-hero-overlay" />
         <div className="mx-auto flex min-h-[78vh] max-w-6xl flex-col justify-between px-6 py-6 text-primary-foreground md:px-12 md:py-8">
           <div className="flex items-center gap-3">

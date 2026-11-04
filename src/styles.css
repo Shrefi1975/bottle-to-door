@@ -154,5 +154,13 @@
 @utility bg-showcase { background-image: radial-gradient(circle at 50% 40%, var(--card), var(--secondary)); }
 @keyframes progress { from { width: 0; } to { width: 100%; } }
 @utility animate-progress { animation: progress 3s linear forwards; }
+@keyframes hero-motion {
+  from { transform: scale(1.06) translate(1.2%, 0); }
+  to { transform: scale(1.18) translate(-1.2%, -1.5%); }
+}
+@utility animate-hero-motion {
+  animation: hero-motion 28s ease-in-out infinite alternate;
+  will-change: transform;
+}
 @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 @utility animate-float { animation: float 4s ease-in-out infinite; }
