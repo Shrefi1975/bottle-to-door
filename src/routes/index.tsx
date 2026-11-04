@@ -34,7 +34,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const WHATSAPP = "966500000000";
+const WHATSAPP = "966560757063";
 
 const ar = (n: number) => n.toLocaleString("ar-SA");
 const wa = (t: string) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t)}`;
