@@ -11,3 +11,4 @@
 
 - Keep the static Netlify export in the build-only `scripts/prepare-netlify.mjs`: on Netlify it promotes prerendered client files to `dist` and removes server artifacts, while Lovable keeps its required output layout.
 - Pin Nitro's external build target and client output explicitly so host auto-detection cannot change the static export source directory.
+- Keep orderable pack data in the browser-safe product catalog shared by the order page and price tests, so displayed prices and regression checks use the same source.
