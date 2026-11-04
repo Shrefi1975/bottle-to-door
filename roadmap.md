@@ -7,4 +7,4 @@
 # Product price update
 - [x] Update supplied pack sizes and prices, retaining unlisted existing prices without guessing missing prices.
 - [x] Remove the specified homepage benefits band.
-- [ ] Verify catalog tests and ordering totals in the page.
+- [x] Verify catalog tests and ordering totals in the page (22 tests passed; mobile order totals and WhatsApp message verified).
