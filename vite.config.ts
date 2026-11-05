@@ -10,7 +10,8 @@ export default defineConfig({
   // Avoid Netlify auto-detecting a functions deployment: the page is static.
   // Lovable retains its own enforced Worker output when building here.
   nitro: {
-    preset: "node-server",
+    // node-server's bundle has no fetch export, so prerendering "/" fails off-Lovable.
+    preset: "cloudflare-module",
     output: { dir: "dist", publicDir: "dist/client", serverDir: "dist/server" },
   },
   tanstackStart: {
